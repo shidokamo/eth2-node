@@ -1,0 +1,27 @@
+[Unit]
+Description=Prism beacon node
+After=network.target
+
+[Service]
+User=beacon
+Group=beacon
+WorkingDirectory=/var/opt/beacon
+ExecStart=/bin/sh -c './prysm.sh beacon-chain \
+  --execution-endpoint=http://localhost:8551 \
+  --${NETWORK} \
+  --jwt-secret=${JWT_DIR}/jwt.hex \
+  --checkpoint-sync-url=${CHECKPOINT} \
+  --genesis-beacon-api-url=${CHECKPOINT} \
+  --suggested-fee-recipient=${FEE_RECIPIENT} \
+  --datadir=/mnt/disks/ssd/beacon \
+  --http-mev-relay=http://localhost:18550 \
+  --accept-terms-of-use \
+  >> /var/log/beacon/beacon.log 2>&1'
+KillMode=control-group
+KillSignal=SIGINT
+TimeoutStopSec=90
+Restart=on-failure
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target

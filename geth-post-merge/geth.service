@@ -1,0 +1,32 @@
+[Unit]
+Description=Geth node
+Documentation=man:geth(1)
+After=network.target
+
+[Service]
+User=geth
+Group=geth
+ExecStart=/bin/sh -c 'exec /usr/bin/geth \
+  --${NETWORK} \
+  --syncmode snap \
+  --datadir /mnt/disks/ssd \
+  --cache=${CACHE} \
+  --ws \
+  --ws.origins "*" \
+  --ws.api "eth,net,web3,txpool,engine,admin" \
+  --http \
+  --http.api "eth,net,web3,txpool,engine,admin,debug" \
+  --authrpc.vhosts=localhost \
+  --authrpc.jwtsecret=${JWT_DIR}/jwt.hex \
+  --authrpc.port=8551 \
+  --authrpc.addr=localhost \
+  --override.terminaltotaldifficulty=${TTD} \
+  >> /var/log/geth/geth.log 2>&1'
+KillMode=process
+KillSignal=SIGINT
+TimeoutStopSec=90
+Restart=on-failure
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target

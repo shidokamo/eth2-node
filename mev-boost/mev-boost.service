@@ -1,0 +1,21 @@
+[Unit]
+Description=MEV-boost
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=mevboost
+Group=mevboost
+ExecStart=/bin/sh -c 'exec /usr/local/bin/mev-boost \
+  -${NETWORK} \
+  -relay-check \
+  -relays ${RELAY} \
+  >> /var/log/mev-boost/mev-boost.log 2>&1'
+KillMode=process
+KillSignal=SIGINT
+TimeoutStopSec=90
+Restart=on-failure
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
