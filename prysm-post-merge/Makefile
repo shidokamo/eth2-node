@@ -1,4 +1,4 @@
-NETWORK=goerli
+NETWORK=
 CHECKPOINT=https://goerli.checkpoint-sync.ethdevops.io
 FEE_RECIPIENT=
 
