@@ -10,6 +10,7 @@ RELAY_goerli  = https://0xafa4c6985aa049fb79dd37010438cfebeb0f2bd42b115b89dd678d
 RELAY_sepolia = https://0x845bd072b7cd566f02faeb0a4033ce9399e42839ced64e8b2adcfc859ed1e8e1a5a293336a49feac6d9a5edb779be53a@builder-relay-sepolia.flashbots.net
 RELAY_siln    = https://0xb5246e299aeb782fbc7c91b41b3284245b1ed5206134b0028b81dfb974e5900616c67847c2354479934fc4bb75519ee1@builder-relay-kiln.flashbots.net
 RELAY_ropsten = https://0xb124d80a00b80815397b4e7f1f05377ccc83aeeceb6be87963ba3649f1e6efa32ca870a88845917ec3f26a8e2aa25c77@builder-relay-ropsten.flashbots.net
+RELAY_mainet  = 
 RELAY = ${RELAY_${NETWORK}}
 
 default:run
@@ -28,7 +29,7 @@ install-go:
 	rm go${GO_VERSION}.linux-amd64.tar.gz
 
 install-mev-boost:
-	CGO_CFLAGS="-O -DBLST_PORTABLE" go install github.com/flashbots/mev-boost@latest
+	CGO_CFLAGS="-O -DBLST_PORTABLE" /usr/local/go/bin/go install github.com/flashbots/mev-boost@latest
 	sudo cp ~/go/bin/mev-boost /usr/local/bin
 	sudo chown mevboost:mevboost /usr/local/bin/mev-boost
 
