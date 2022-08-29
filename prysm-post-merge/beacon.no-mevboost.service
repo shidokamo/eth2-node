@@ -10,8 +10,6 @@ ExecStart=/bin/sh -c './prysm.sh beacon-chain \
   --execution-endpoint=http://localhost:8551 \
   --${NETWORK} \
   --jwt-secret=${JWT_DIR}/jwt.hex \
-  --checkpoint-sync-url=${CHECKPOINT} \
-  --genesis-beacon-api-url=${CHECKPOINT} \
   --suggested-fee-recipient=${FEE_RECIPIENT} \
   --datadir=/mnt/disks/ssd/beacon \
   --accept-terms-of-use \

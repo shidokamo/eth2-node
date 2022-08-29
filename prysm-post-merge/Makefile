@@ -46,6 +46,20 @@ run:
 	sudo systemctl enable beacon.service
 	sudo systemctl start beacon.service
 
+run-nomevboost:
+	-sudo systemctl stop beacon.service
+	cat ./beacon.no-mevboost.service | envsubst > ./tmp.service
+	sudo cp ./tmp.service /etc/systemd/system/beacon.service
+	rm tmp.service
+	sudo mkdir -p ${DATADIR}
+	sudo chown -R ${UGNAME}:${UGNAME} ${DATADIR}
+	sudo mkdir -p /var/log/beacon
+	sudo chown -R ${UGNAME}:${UGNAME} /var/log/beacon
+	sudo chmod 755 /var/log/beacon
+	sudo systemctl daemon-reload
+	sudo systemctl enable beacon.service
+	sudo systemctl start beacon.service
+
 run-checkpoint:
 	-sudo systemctl stop beacon.service
 	cat ./beacon.checkpoint.service | envsubst > ./tmp.service

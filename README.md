@@ -61,7 +61,37 @@ make check-swap
 chronyc sources
 ```
 
-# 2. Execution-layer client (geth) のインストールと起動
+# 2. mev-boost の起動
+**MainnetのRelayのendpointはまだないので、Mainnetの場合はこの項を飛ばしてください**
+
+`mev-boost` というディレクトリ内に、`env`というファイルを作り、ネットワークを指定してください。
+mev-boostが起動していないと、Prysmの起動が失敗します。
+
+```shell
+NETWORK=goerli
+```
+
+```shell
+# Goのインストールと、mev-boostのインストールを行います。
+make install
+
+# mev-boostをサービスとして登録して起動します。
+make run
+
+# サービスの状態の確認
+make status
+
+# ログは、/var/log/beacon/beacon.log で見れます。
+# 日時で30日分ログローテーションされます。
+tail -f /var/log/geth/geth.log
+
+# クライアントの更新時
+make update
+```
+
+設定がうまく行っていれば、mev-boostに定期的にリクエストが来ているのを確認できます。
+
+# 3. Execution-layer client (geth) のインストールと起動
 `geth-post-merge`というディレクトリ内に、`env`というファイルを作り、自分がノードを建てるネットワークとTTDを指定してください。
 例えば以下のようにします。
 TTDを明示的に指定しているのは、Mainnetのマージの際に緊急的にTTDが変更される可能性もあるためです。
@@ -107,7 +137,7 @@ make attach
 make update
 ```
 
-# 3. Consensus-layer client (Prysm) のインストールと起動
+# 4. Consensus-layer client (Prysm) のインストールと起動
 かならず、先ほど立ち上げた geth をエンドポイントに使用し、Executionのエンドポイントに Infura などを指定するのはおやめください。The Merge 後に動かなくなります。
 
 `geth-post-merge`というディレクトリ内に、`env`というファイルを作り、設定をしてください。
@@ -153,37 +183,14 @@ tail -f /var/log/geth/geth.log
 # 同期後に、もう一度以下のコマンドで systemd を上書きし、checkpoint syncの設定を無効化することをお勧めします。
 make run
 
+# MEV-boost を使わない場合はこちらで、起動してください。
+# make run-nomevboost
+
 # クライアントの更新は以下のように行います。
 make update
 
 ```
 
-# 4. mev-boost の起動
-`mev-boost` というディレクトリ内に、`env`というファイルを作り、ネットワークを指定してください。
-
-```shell
-NETWORK=goerli
-```
-
-```shell
-# Goのインストールと、mev-boostのインストールを行います。
-make install
-
-# mev-boostをサービスとして登録して起動します。
-make run
-
-# サービスの状態の確認
-make status
-
-# ログは、/var/log/beacon/beacon.log で見れます。
-# 日時で30日分ログローテーションされます。
-tail -f /var/log/geth/geth.log
-
-# クライアントの更新時
-make update
-```
-
-設定がうまく行っていれば、mev-boostに定期的にリクエストが来ているのを確認できます。
 
 
 
