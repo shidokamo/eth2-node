@@ -1,4 +1,4 @@
-NETWORK=
+NETWORK=mainnet
 CACHE=8092
 
 -include env
@@ -12,7 +12,7 @@ default:run logrotate
 
 install:
 	sudo add-apt-repository -y ppa:ethereum/ethereum
-	sudo apt-get update
+	-sudo apt-get update
 	sudo apt-get install -y ethereum
 
 jwt:

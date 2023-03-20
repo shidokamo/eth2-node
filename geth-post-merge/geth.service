@@ -20,7 +20,6 @@ ExecStart=/bin/sh -c 'exec /usr/bin/geth \
   --authrpc.jwtsecret=${JWT_DIR}/jwt.hex \
   --authrpc.port=8551 \
   --authrpc.addr=localhost \
-  --override.terminaltotaldifficulty=${TTD} \
   >> /var/log/geth/geth.log 2>&1'
 KillMode=process
 KillSignal=SIGINT

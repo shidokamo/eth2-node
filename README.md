@@ -91,20 +91,6 @@ make update
 設定がうまく行っていれば、mev-boostに定期的にリクエストが来ているのを確認できます。
 
 # 3. Execution-layer client (geth) のインストールと起動
-`geth-post-merge`というディレクトリ内に、`env`というファイルを作り、自分がノードを建てるネットワークとTTDを指定してください。
-例えば以下のようにします。
-TTDを明示的に指定しているのは、Mainnetのマージの際に緊急的にTTDが変更される可能性もあるためです。
-
-```shell
-NETWORK=mainnet
-TTD=58750000000000000000000
-```
-もしくは
-```shell
-NETWORK=goerli
-TTD=10790000
-```
-
 ```shell
 cd geth-post-merge
 
