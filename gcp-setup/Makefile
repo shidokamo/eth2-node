@@ -1,9 +1,9 @@
 -include env
 PROJECT=$(shell gcloud config get-value project)
-ZONE=$(shell gcloud config get-value compute/zone)
+ZONE=asia-northeast1-c
 MACHINE=n2-standard-8
 SWAP_SIZE_MB=32000
-NAME=prysm
+NAME=eth
 
 # <Note for SSD>
 # If you wanto change # of SSD, add/remove '--local-ssd' options.
@@ -11,7 +11,7 @@ NAME=prysm
 #
 COMMON_OPTION:=\
   --zone=${ZONE} \
-  --image-family=ubuntu-2004-lts \
+  --image-family=ubuntu-2204-lts \
   --image-project=ubuntu-os-cloud \
   --boot-disk-type=pd-balanced \
   --boot-disk-size=200GB \
@@ -26,7 +26,7 @@ COMMON_OPTION:=\
   --metadata-from-file startup-script=./startup_script.sh \
   --service-account=${SERVICE_ACCOUNT}@${PROJECT}.iam.gserviceaccount.com \
   --scopes=cloud-platform \
-  --tags=jupyter,geth,prysm \
+  --tags=jupyter,geth,prysm,eth \
   --network-tier=PREMIUM \
 
 vm:
