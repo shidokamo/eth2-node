@@ -62,10 +62,9 @@ chronyc sources
 ```
 
 # 2. mev-boost の起動
-**MainnetのRelayのendpointはまだないので、Mainnetの場合はこの項を飛ばしてください**
-
 `mev-boost` というディレクトリ内に、`env`というファイルを作り、ネットワークを指定してください。
-mev-boostが起動していないと、Prysmの起動が失敗します。
+デフォルトではmainnetです。
+mev-boostが起動していないと、Prysmの起動が失敗します。（直したかも）
 
 ```shell
 NETWORK=goerli
