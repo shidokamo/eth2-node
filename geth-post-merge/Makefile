@@ -54,7 +54,7 @@ attach:
 
 update:
 	sudo add-apt-repository -y ppa:ethereum/ethereum
-	sudo apt-get update
+	-sudo apt-get update
 	sudo apt-get upgrade
 	sudo systemctl restart geth
 
