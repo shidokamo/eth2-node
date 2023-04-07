@@ -2,7 +2,7 @@ NETWORK=mainnet
 
 -include env
 
-GO_VERSION=1.19
+GO_VERSION=1.20
 
 # Relay endpoints
 RELAY_goerli  = https://0xafa4c6985aa049fb79dd37010438cfebeb0f2bd42b115b89dd678dab0670c1de38da0c4e9138c9290a398ecd9a0b3110@builder-relay-goerli.flashbots.net
@@ -60,4 +60,4 @@ restart:
 stop:
 	sudo systemctl stop mev-boost.service
 
-update:stop install-mev-boost restart
+update:stop install-go install-mev-boost run

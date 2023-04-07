@@ -9,12 +9,12 @@ Group=mevboost
 ExecStart=/bin/sh -c 'exec /usr/local/bin/mev-boost \
   -${NETWORK} \
   -relay-check \
-  -relays ${RELAY} \
+  -relay ${RELAY} \
   >> /var/log/mev-boost/mev-boost.log 2>&1'
 KillMode=process
 KillSignal=SIGINT
 TimeoutStopSec=90
-Restart=on-failure
+Restart=always
 RestartSec=10s
 
 [Install]
