@@ -13,6 +13,7 @@ ExecStart=/bin/sh -c './prysm.sh beacon-chain \
   --checkpoint-sync-url=${CHECKPOINT} \
   --suggested-fee-recipient=${FEE_RECIPIENT} \
   --datadir=/mnt/disks/ssd/beacon \
+  --http-mev-relay=http://localhost:18550 \
   --accept-terms-of-use \
   >> /var/log/beacon/beacon.log 2>&1'
 KillMode=control-group
